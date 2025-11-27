@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { DotParas } from '@/types/paras';
-import { reactive, computed } from 'vue';
+import type { DotParas, FieldConfig } from '@/types/paras';
+import { reactive } from 'vue';
 
-let dotParas = reactive<DotParas>({
+const dotParas = reactive<DotParas>({
     RMin: 5,
     RMax: 30,
     dPt: 0.4,
@@ -10,18 +10,12 @@ let dotParas = reactive<DotParas>({
     kOffset: 0.15
 })
 
-interface FieldConfig {
-    label: string,
-    min: number,
-    max: number,
-    step: number
-}
 
 const fieldConfigs: Record<keyof DotParas, FieldConfig> = {
     RMin: { label: "最小分布直径", min: 0, max: 50, step: 1 },
     RMax: { label: "最大分布直径", min: 0, max: 40, step: 1 },
     dPt: { label: "点间距", min: 0.25, max: 1, step: 0.05 },
-    rPt: { label: "点大小", min: 0.1, max: 0.5, step: 0.01 },
+    rPt: { label: "点半径大小", min: 0.05, max: 0.5, step: 0.01 },
     kOffset: { label: "随机分布系数", min: 0, max: 1, step: 0.01 },
 }
 
@@ -39,7 +33,6 @@ defineExpose(dotParas)
                 :step="config.step" />
         </div>
     </div>
-
 </template>
 
 <style scoped></style>

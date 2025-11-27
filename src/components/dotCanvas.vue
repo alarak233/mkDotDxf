@@ -8,7 +8,13 @@ interface Props {
     RMax?: number,
     xOffset?: number
 }
-const props = withDefaults(defineProps<Props>(), { pts: () => [], dotParas: () => ({ RMin: 5, RMax: 30, dPt: 0.2, rPt: 0.1, kOffset: 0.15 }), RMax: 40, xOffset: 0 })
+const props = withDefaults(
+    defineProps<Props>(), {
+    pts: undefined,
+    dotParas: undefined,
+    RMax: 40,
+    xOffset: 0
+})
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 function pt2canvas(x: number, mid: number, k: number): number {
@@ -43,7 +49,7 @@ watch(() => [props.pts, props.dotParas.rPt], drawCanvas, { deep: true })
 </script>
 
 <template>
-    <canvas ref="canvasRef" width="800" height="600"></canvas>
+    <canvas ref="canvasRef" width="600" height="500"></canvas>
 </template>
 
 <style scoped></style>
