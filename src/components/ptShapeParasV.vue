@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PtShape, } from '@/types/paras';
 import type { PtShapeParas, FieldConfig, SinglePointParas, CirclesParas, CirclesPtsParas, SpiralParas } from '@/types/paras';
-import { reactive } from 'vue';
+import { reactive, toRef, triggerRef, watch } from 'vue';
 
 const ptShapeParas = reactive<PtShapeParas>({ shape: PtShape.SinglePoint })
 
@@ -35,14 +35,14 @@ const circlesConfig: Record<keyof CirclesParas, FieldConfig> = {
 const circlesPtsConfig: Record<keyof CirclesPtsParas, FieldConfig> = {
     shape: { label: "" },
     cirNum: { label: "圈数", min: 1, max: 5, step: 1 },
-    ptsNum: { label: "最外圈点数量", min: 1, max: 10, step: 1 },
+    ptsNum: { label: "最外圈点数量", min: 1, max: 20, step: 1 },
     isEqualAngle: { label: "" },
     kMin: { label: "最小圈比例", min: 0, max: 1, step: 0.1 },
 }
 const spiralConifg: Record<keyof SpiralParas, FieldConfig> = {
     shape: { label: "" },
     cirNum: { label: "圈数", min: 1, max: 5, step: 1 },
-    ptsNum: { label: "最外圈点数量", min: 1, max: 10, step: 1 },
+    ptsNum: { label: "点总数", min: 1, max: 40, step: 1 },
     isEqualAngle: { label: "" },
     kMin: { label: "最小圈比例", min: 0, max: 1, step: 0.1 },
 }
@@ -56,7 +56,12 @@ const radioConifg: Record<PtShape, FieldConfig> = {
 
 function selectionShape(shape: PtShape) {
     Object.assign(ptShapeParas, radioConifg[shape].value)
+    triggerRef(toRef(ptShapeParas, "shape"))
 }
+watch(singlePointParas, () => selectionShape(PtShape.SinglePoint))
+watch(circlesParas, () => selectionShape(PtShape.Circles))
+watch(circlesPtsParas, () => selectionShape(PtShape.CirclesPts))
+watch(spiralParas, () => selectionShape(PtShape.Spiral))
 
 defineExpose(ptShapeParas)
 </script>
@@ -106,7 +111,8 @@ defineExpose(ptShapeParas)
             <input type="radio" v-model="spiralParas.isEqualAngle" :value="false" />
             <label>等弧长分布</label>
         </div>
-        <label>{{ ptShapeParas }}</label>
+        <!-- <label>{{ ptShapeParas }}</label> -->
+        <button>生成dxf并下载(待完成)</button>
     </div>
 </template>
 

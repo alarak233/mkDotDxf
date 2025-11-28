@@ -32,7 +32,6 @@ const ptShapeParas = ref<PtShapeParas | null>(null)
       <PtShapeCanvas v-if="dotParas && ptShapeParas" :dot-paras="dotParas" :pt-shape-paras="ptShapeParas">
       </PtShapeCanvas>
       <PtShapeParasV ref="ptShapeParas"></PtShapeParasV>
-      <label>{{ ptShapeParas }}</label>
     </div>
   </div>
 </template>
