@@ -44,5 +44,6 @@ const ptShapeParas = ref<PtShapeParas | null>(null)
 
 .container {
   display: flex;
+  flex-wrap: wrap;
 }
 </style>

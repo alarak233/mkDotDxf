@@ -78,6 +78,7 @@ defineExpose(ptShapeParas)
                 <div v-if="key !== 'shape'">
                     <label :for="config.label">{{ config.label }}</label>
                     <input type="number" v-model.number="circlesParas[key]" :min="config.min" :max="config.max" />
+                    <br />
                     <input type="range" v-model.number="circlesParas[key]" :min="config.min" :max="config.max"
                         :step="config.step" />
                 </div>
@@ -88,12 +89,14 @@ defineExpose(ptShapeParas)
                 <div v-if="key !== 'shape' && key !== 'isEqualAngle'">
                     <label :for="config.label">{{ config.label }}</label>
                     <input type="number" v-model.number="circlesPtsParas[key]" :min="config.min" :max="config.max" />
+                    <br />
                     <input type="range" v-model.number="circlesPtsParas[key]" :min="config.min" :max="config.max"
                         :step="config.step" />
                 </div>
             </div>
             <input type="radio" v-model="circlesPtsParas.isEqualAngle" :value="true" />
             <label>等角度分布</label>
+            <br />
             <input type="radio" v-model="circlesPtsParas.isEqualAngle" :value="false" />
             <label>等弧长分布</label>
         </div>
@@ -102,12 +105,14 @@ defineExpose(ptShapeParas)
                 <div v-if="key !== 'shape' && key !== 'isEqualAngle'">
                     <label :for="config.label">{{ config.label }}</label>
                     <input type="number" v-model.number="spiralParas[key]" :min="config.min" :max="config.max" />
+                    <br />
                     <input type="range" v-model.number="spiralParas[key]" :min="config.min" :max="config.max"
                         :step="config.step" />
                 </div>
             </div>
             <input type="radio" v-model="spiralParas.isEqualAngle" :value="true" />
             <label>等角度分布</label>
+            <br />
             <input type="radio" v-model="spiralParas.isEqualAngle" :value="false" />
             <label>等弧长分布</label>
         </div>

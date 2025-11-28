@@ -29,6 +29,7 @@ defineExpose(dotParas)
         <div v-for="(config, key) in fieldConfigs">
             <label :for="config.label">{{ config.label }}</label>
             <input type="number" v-model.number="dotParas[key]" :min="config.min" :max="config.max" />
+            <br />
             <input type="range" v-model.number="dotParas[key]" :min="config.min" :max="config.max"
                 :step="config.step" />
         </div>
